@@ -713,6 +713,138 @@ body.cursor-hover #cursor-label { opacity: 1; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 /* ═══════════════════════════════════════════════════════
+   CERTIFICATES
+═══════════════════════════════════════════════════════ */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.cert-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.cert-card:hover {
+  border-color: rgba(var(--accent-rgb), 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.cert-image-wrap {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: var(--surface);
+  cursor: pointer;
+}
+.cert-image-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-out);
+}
+.cert-card:hover .cert-image-wrap img { transform: scale(1.05); }
+.cert-image-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
+}
+.cert-image-placeholder span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em;
+}
+.cert-image-overlay {
+  position: absolute; inset: 0;
+  background: rgba(3,4,10,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+  color: #fff;
+}
+.cert-card:hover .cert-image-overlay { opacity: 1; }
+.cert-body { padding: 24px; }
+.cert-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: var(--text-h5); font-weight: 700;
+  margin-bottom: 6px;
+  transition: color 0.3s;
+}
+.cert-card:hover .cert-title { color: var(--accent); }
+.cert-issuer {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.08em;
+  color: var(--accent); margin-bottom: 8px;
+}
+.cert-desc {
+  font-size: var(--text-sm); color: var(--text-dim);
+  line-height: 1.5; margin-bottom: 16px;
+}
+.cert-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+.cert-date {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--text-dim);
+}
+.cert-verify {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.08em;
+  color: var(--accent-2);
+  transition: color 0.3s;
+}
+.cert-verify:hover { color: var(--accent); }
+
+/* Certificate Lightbox */
+.cert-lightbox {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(3,4,10,0.92);
+  backdrop-filter: blur(20px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.cert-lightbox-inner {
+  position: relative;
+  max-width: 900px; max-height: 90vh;
+  width: 100%;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+}
+.cert-lightbox-inner img {
+  width: 100%; display: block;
+  max-height: 70vh; object-fit: contain;
+  background: var(--surface);
+}
+.cert-lightbox-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 40px; height: 40px; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(3,4,10,0.7); border-radius: 50%;
+  color: var(--text); transition: color 0.3s, background 0.3s;
+}
+.cert-lightbox-close:hover { color: var(--accent); background: rgba(3,4,10,0.9); }
+.cert-lightbox-info {
+  padding: 20px 24px;
+}
+.cert-lightbox-info h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: var(--text-h4); font-weight: 700;
+  margin-bottom: 4px;
+}
+.cert-lightbox-info p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════════════════════
    CONTACT
 ═══════════════════════════════════════════════════════ */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s8); }
