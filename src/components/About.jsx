@@ -13,7 +13,7 @@ export default function About() {
         <div className="about-grid">
           <div className="about-photo-wrap reveal reveal-d2">
             {!imgError ? (
-              <img src="/profile.jpg" alt="Sarkhan Rustamov" draggable="false" onError={() => setImgError(true)} />
+              <img src="/profile.png" alt="Sarkhan Rustamov" draggable="false" onError={() => setImgError(true)} />
             ) : (
               <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, var(--surface), var(--surface-2))', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16 }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: 64, height: 64, color: 'var(--text-dim)' }}>
